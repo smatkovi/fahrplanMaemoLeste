@@ -1,0 +1,2 @@
+#!/bin/sh -e
+ln -fs /opt/fahrplan/bin/fahrplan /usr/bin/fahrplan

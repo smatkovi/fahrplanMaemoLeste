@@ -1,0 +1,11 @@
+*.o
+moc_*.cpp
+qrc_*.cpp
+fahrplan
+build-stamp
+configure-stamp
+debian/fahrplan.substvars
+debian/fahrplan/*
+debian/files
+fahrplan
+

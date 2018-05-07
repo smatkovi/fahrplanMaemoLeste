@@ -1,0 +1,55 @@
+fahrplan (0.0.37) unstable; urgency=low
+
+  * Implement SNI support for Translink
+  * Fixed parsing DB detail view when flaparrow is closed
+
+ -- Jonathan Wilson <jfwfreo@tpgi.com.au>  Sun,  6 May 2018 17:02:55 -0400
+
+fahrplan (0.0.36) unstable; urgency=low
+
+  * Fix an issue with printing -1 transfers if the only result is a walking leg
+
+ -- Jonathan Wilson <jfwfreo@tpgi.com.au>  Fri, 17 Mar 2017 22:23:38 -0400
+
+fahrplan (0.0.35) unstable; urgency=low
+
+  * Fix an issue with date time conversion that caused times between 12:00 and 1:00 (AM or PM) to not work properly
+
+ -- Jonathan Wilson <jfwfreo@tpgi.com.au>  Wed,  8 Mar 2017 07:23:57 -0500
+
+fahrplan (0.0.34) unstable; urgency=low
+
+  * Support Translink in Queensland, Australia
+
+ -- Jonathan Wilson <jfwfreo@tpgi.com.au>  Thu,  2 Mar 2017 16:57:15 -0500
+
+fahrplan (0.0.33) unstable; urgency=low
+  * fixed parsing for detail view DB
+
+ -- Christian Weniger <less_to_space@web.de>  Wed, 02 Sep 2015 22:09:06 +0200
+
+fahrplan (0.0.32) unstable; urgency=low
+  * applied modified patch by dehapama to fix DB parsing
+  * moved binary to opt and made a symlink
+
+ -- Christian Weniger <less_to_space@web.de>  Sun, 23 Aug 2015 23:35:05 +0200
+
+fahrplan (0.0.31) stable; urgency=medium
+
+  * applied patch by hypnotoad123 to fix SBB backend
+
+ -- kolp <>  Tue, 04 Nov 2014 03:10:42 +0100
+
+fahrplan (0.0.30) stable; urgency=medium
+
+  * increased network timeout to 30 sec (which also seems to fix a crash)
+  * incorporated dehapama's patch from http://talk.maemo.org/showpost.php?p=1312340&postcount=303
+  * extended the DB parsing a bit to show platforms with English locale
+
+ -- kolp <>  Sat, 01 Nov 2014 21:04:59 +0100
+
+fahrplan (0.0.29) stable; urgency=low
+
+  * Fix for SBB.ch interface
+
+ -- smurfy <maemo@smurfy.de>  Tue, 8 Nov 2011 21:30:00 +0000

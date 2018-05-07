@@ -1,0 +1,1 @@
+C:/QTSDK/Maemo/4.6.2/wbin/mad.cmd -t fremantle-pr13 dpkg-buildpackage -sa -S -uc -us -Imoc -Iobj -Ircc -Iui -I.svn -I.git -I*.deb -I*.changes -Iqtc_packaging -IMakefile -I*.pro.user -Idebug -Irelease -I*release -I*debug -Ifahrplan

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/translation">
+        <file alias="de_DE">fahrplan_de.qm</file>
+        <file alias="fr_FR">fahrplan_fr.qm</file>
+    </qresource>
+</RCC>
