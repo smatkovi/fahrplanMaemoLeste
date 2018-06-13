@@ -63,8 +63,8 @@ parserTranslink::parserTranslink(QObject *parent)
      Q_UNUSED(parent);
      http = new QHttp(this);
      QSslSocket* sslSocket = new QSslSocket(this);
-     sslSocket->setProtocol(QSsl::TlsV1);
-     sslSocket->setPeerVerifyName("app.jp.translink.com.au");
+     sslSocket->setProtocol(QSsl::SecureProtocols);
+     sslSocket->setPeerVerifyName("jp.translink.com.au");
      http->setSocket(sslSocket);
 
      connect(http, SIGNAL(requestFinished(int,bool)),
@@ -85,7 +85,7 @@ QStringList parserTranslink::getStationsByName(QString stationName)
 
     qDebug() << "Translink: getStationsByName";
 
-    QUrl url("https://app.jp.translink.com.au/plan-your-journey/location/find-location");
+    QUrl url("https://jp.translink.com.au/plan-your-journey/location/find-location");
 
     http->setHost(url.host(), QHttp::ConnectionModeHttps, url.port() == -1 ? 0 : url.port());
 
@@ -143,7 +143,7 @@ QStringList parserTranslink::getStationsByGPS(qreal latitude, qreal longitude)
 
     qDebug() << "Translink: getStationsByGPS";
 
-    QUrl url("https://app.jp.translink.com.au/plan-your-journey/location/reverse-geocode-coords");
+    QUrl url("https://jp.translink.com.au/plan-your-journey/location/reverse-geocode-coords");
 
     http->setHost(url.host(), QHttp::ConnectionModeHttps, url.port() == -1 ? 0 : url.port());
 
@@ -228,7 +228,7 @@ ResultInfo parserTranslink::getJourneyData(QString destinationStation, QString a
     postData.append(time.toString("AP"));
     postData.append("&TransportModes%5B%5D=Bus&TransportModes%5B%5D=Train&TransportModes%5B%5D=Ferry&TransportModes%5B%5D=Tram&MaximumWalkingDistance=1500&WalkingSpeed=Normal&ServiceTypes%5B%5D=Regular&ServiceTypes%5B%5D=Express&ServiceTypes%5B%5D=NightLink&ServiceTypes%5B%5D=School&FareTypes%5B%5D=Standard&FareTypes%5B%5D=Prepaid&FareTypes%5B%5D=Free&journeyPlanIsValid=true");
 
-    QUrl url("https://app.jp.translink.com.au/plan-your-journey/journey-planner");
+    QUrl url("https://jp.translink.com.au/plan-your-journey/journey-planner");
 
     http->setHost(url.host(), QHttp::ConnectionModeHttps, url.port() == -1 ? 0 : url.port());
 

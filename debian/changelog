@@ -1,3 +1,10 @@
+fahrplan (0.0.38) unstable; urgency=low
+
+  * Support TLS 1.2 for Translink
+  * Fix translink journey planner URL
+
+ -- Jonathan Wilson <jfwfreo@tpgi.com.au>  Wed, 13 Jun 2018 11:56:54 +1000
+
 fahrplan (0.0.37) unstable; urgency=low
 
   * Implement SNI support for Translink
