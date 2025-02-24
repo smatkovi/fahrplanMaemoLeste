@@ -28,7 +28,7 @@ parserXmlOebbAt::parserXmlOebbAt(QObject *parent)
      connect(http, SIGNAL(requestFinished(int,bool)), this, SLOT(httpRequestFinished(int,bool)));
      connect(http, SIGNAL(dataReadProgress(int,int)), this, SLOT(httpDataReadProgress(int,int)));
 
-     baseUrl = "http://fahrplan.oebb.at/bin/query.exe";
+     baseUrl = "https://fahrplan.oebb.at/bin/query.exe";
 }
 
 QStringList parserXmlOebbAt::getTrainRestrictions()
