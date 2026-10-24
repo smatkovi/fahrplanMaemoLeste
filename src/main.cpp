@@ -36,6 +36,11 @@
         #include <grp.h>
         #include <pwd.h>
     #endif
+#elif defined(BUILD_FOR_MAEMO_LESTE)
+    #include <QtWidgets/QApplication>
+    #include <QtGui/QIcon>
+    #include "gui/leste/fahrplanwindow.h"
+    #include "gui/leste/leste.h"
 #else
     #include "gui/desktop-test/mainwindow.h"
     #if defined(BUILD_FOR_QT5)
@@ -122,6 +127,19 @@ int main(int argc, char *argv[])
     #elif defined(BUILD_FOR_UBUNTU)
         QGuiApplication* app = new QGuiApplication(argc, argv);
         app->setWindowIcon(QIcon(":/fahrplan2.svg"));
+    #elif defined(BUILD_FOR_MAEMO_LESTE)
+        // The touch screen of a phone is an X input device that comes and goes
+        // with the display (MCE disables it while the screen is blanked). The
+        // XInput2 code of the Leste platform plugin does not register it again
+        // and aborts on the next touch (Q_ASSERT(dev) in xi2ProcessTouch). The
+        // core pointer events that X derives from the touches are all a Hildon
+        // application needs -- Qt 4 on Maemo 5 never used XInput2 either.
+        // FAHRPLAN_XI2=1 keeps XInput2 for experiments.
+        if (!qEnvironmentVariableIsSet("FAHRPLAN_XI2"))
+            qputenv("QT_XCB_NO_XI2", "1");
+        QApplication* app = new QApplication(argc, argv);
+        app->setApplicationName("fahrplan2");
+        app->setWindowIcon(QIcon::fromTheme("fahrplan2"));
     #else
         QApplication* app = new QApplication(argc, argv);
         #if defined(BUILD_FOR_DESKTOP)
@@ -250,6 +268,12 @@ int main(int argc, char *argv[])
 
             view->showFullScreen();
         #endif
+    #elif defined(BUILD_FOR_MAEMO_LESTE)
+        qDebug()<<"Maemo Leste";
+        FahrplanWindow w;
+        w.show();
+        if (!qgetenv("FAHRPLAN_GRAB").isEmpty())
+            Leste::installWindowGrabber(QString::fromLocal8Bit(qgetenv("FAHRPLAN_GRAB")));
     #else
         qDebug()<<"Desktop";
         MainWindow w;

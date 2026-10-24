@@ -94,7 +94,13 @@ symbian {
         export($$itempath)
         INSTALLS += $$item
     }
-    maemo5 {
+    leste {
+        desktopfile.files = data/leste/$${TARGET}.desktop
+        desktopfile.path = /usr/share/applications/hildon
+        # the other sizes are installed by the leste scope of the .pro file
+        icon.files = data/leste/icons/64x64/$${TARGET}.png
+        icon.path = /usr/share/icons/hicolor/64x64/apps
+    } else:maemo5 {
         desktopfile.files = data/$${TARGET}_fremantle.desktop
         desktopfile.path = /usr/share/applications/hildon
         icon.files = data/$${TARGET}_64.png

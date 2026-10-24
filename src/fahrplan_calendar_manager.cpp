@@ -39,7 +39,7 @@
 #   include <extendedstorage.h>
 #   include <kdatetime.h>
 #   include <ksystemtimezone.h>
-#elif !defined(BUILD_FOR_DESKTOP) && !defined(BUILD_FOR_UBUNTU) && !defined(BUILD_FOR_SAILFISHOS)
+#elif !defined(BUILD_FOR_DESKTOP) && !defined(BUILD_FOR_UBUNTU) && !defined(BUILD_FOR_SAILFISHOS) && !defined(BUILD_FOR_MAEMO_LESTE)
 #   include <QOrganizerManager>
 #endif
 // qmake passes the version of the build; this is only the fallback for a
@@ -224,7 +224,7 @@ void FahrplanCalendarManager::getCalendarsList()
           }
       }
   }
-#elif !defined(BUILD_FOR_DESKTOP) && !defined(BUILD_FOR_UBUNTU) && !defined(BUILD_FOR_SAILFISHOS)
+#elif !defined(BUILD_FOR_DESKTOP) && !defined(BUILD_FOR_UBUNTU) && !defined(BUILD_FOR_SAILFISHOS) && !defined(BUILD_FOR_MAEMO_LESTE)
     QString id = settings->value("CollectionId").toString();
     QOrganizerCollectionId collectionId = QOrganizerCollectionId::fromString(id);
 

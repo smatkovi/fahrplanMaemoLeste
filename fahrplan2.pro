@@ -2,11 +2,17 @@
 APP_NAME = Fahrplan
 
 # Define Version
-VERSION = 2.0.51-meego1
+VERSION = 2.0.52-leste1
 
 #CONFIG+= openrepos
 
-DEFINES += BUILD_FOR_HARMATTAN
+# Maemo Leste: Qt 5 plus the QtMaemo5 widgets (libqt5maemo5-dev) and the
+# maemo platform plugin (qt-platform-maemo). Detected by the QtMaemo5 headers,
+# or forced with "qmake CONFIG+=leste".
+greaterThan(QT_MAJOR_VERSION, 4):exists($$[QT_INSTALL_HEADERS]/QtMaemo5/qmaemo5valuebutton.h): CONFIG += leste
+
+# The MeeGo fork always built the Harmattan flavour; that only applies to Qt 4
+lessThan(QT_MAJOR_VERSION, 5): DEFINES += BUILD_FOR_HARMATTAN
 
 # Switch for jolla to separate harbour and openrepo version
 
@@ -53,6 +59,9 @@ QML_IMPORT_PATH =
 QT += network xml
 lessThan(QT_MAJOR_VERSION, 5) {
     QT += declarative script
+} else:leste {
+    QT += widgets concurrent dbus maemo5
+    DEFINES += BUILD_FOR_QT5
 } else {
     QT += quick qml concurrent
     DEFINES += BUILD_FOR_QT5
@@ -61,9 +70,11 @@ lessThan(QT_MAJOR_VERSION, 5) {
 blackberry: QT += opengl
 maemo5:QT += maemo5
 
-!maemo5:!blackberry: CONFIG += mobility
-maemo5: CONFIG += mobility11
-!blackberry: MOBILITY += location organizer
+!leste {
+    !maemo5:!blackberry: CONFIG += mobility
+    maemo5: CONFIG += mobility11
+    !blackberry: MOBILITY += location organizer
+}
 
 TRANSLATIONS += \
     translations/fahrplan_ar.ts \
@@ -294,6 +305,53 @@ maemo5 {
     DEFINES += BUILD_FOR_MAEMO_5
     QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
     QMAKE_LFLAGS += -pie -rdynamic
+}
+
+leste {
+    message("Maemo Leste build")
+    TARGET = fahrplan2
+    DEFINES += BUILD_FOR_MAEMO_LESTE
+
+    # Position of "nearby stations": liblocation (location-daemon / gpsd)
+    CONFIG += link_pkgconfig
+    PKGCONFIG += liblocation glib-2.0 gobject-2.0
+
+    HEADERS += \
+        src/gui/leste/leste.h \
+        src/gui/leste/gpslocation.h \
+        src/gui/leste/fahrplanwindow.h \
+        src/gui/leste/stationselectwindow.h \
+        src/gui/leste/journeyresultswindow.h \
+        src/gui/leste/journeydetailswindow.h \
+        src/gui/leste/timetablewindow.h
+
+    SOURCES += \
+        src/gui/leste/leste.cpp \
+        src/gui/leste/gpslocation.cpp \
+        src/gui/leste/fahrplanwindow.cpp \
+        src/gui/leste/stationselectwindow.cpp \
+        src/gui/leste/journeyresultswindow.cpp \
+        src/gui/leste/journeydetailswindow.cpp \
+        src/gui/leste/timetablewindow.cpp
+
+    OTHER_FILES += \
+        data/leste/fahrplan2.desktop \
+        debian/control \
+        debian/rules \
+        debian/changelog
+
+    for(size, $$list(48x48 96x96 128x128 256x256)) {
+        icon_$${size}.files = data/leste/icons/$${size}/fahrplan2.png
+        icon_$${size}.path = /usr/share/icons/hicolor/$${size}/apps
+        INSTALLS += icon_$${size}
+    }
+    icon_scalable.files = data/leste/icons/scalable/fahrplan2.svg
+    icon_scalable.path = /usr/share/icons/hicolor/scalable/apps
+    INSTALLS += icon_scalable
+
+    QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
+    # liblocation.pc also lists gconf and dbus-glib, which the binary does not use
+    QMAKE_LFLAGS += -Wl,--as-needed
 }
 
 blackberry {
