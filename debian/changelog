@@ -10,5 +10,12 @@ fahrplan2 (2.0.52-leste1) unstable; urgency=medium
     details of a connection; departure and arrival boards; favourite
     stations; stations nearby through liblocation (location-daemon).
   * Translations of the Harmattan pages are reused.
+  * Fix: the DB departure board never sent its request (the slot did not
+    override the one of ParserAbstract).
+  * Runs without XInput2: the touch screen disappears from X while the
+    display is blanked, and the XInput2 code of the Leste platform plugin
+    aborts on the next touch.
+  * Refreshes the hicolor icon cache on install, so the icon shows up in the
+    application menu.
 
- -- smatkovi <smatkovi@users.noreply.github.com>  Sat, 24 Oct 2026 20:30:00 +0200
+ -- smatkovi <smatkovi@users.noreply.github.com>  Sat, 24 Oct 2026 20:55:00 +0200

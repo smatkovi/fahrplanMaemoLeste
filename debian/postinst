@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+# The icon cache of hicolor is not refreshed by a trigger on Leste, and with
+# an up-to-date looking cache GTK (and so the Hildon application menu) does
+# not see the new icon; refresh it the way Maemo packages always did.
+if [ "$1" = "configure" ] && command -v gtk-update-icon-cache >/dev/null 2>&1; then
+    gtk-update-icon-cache -q -f -t /usr/share/icons/hicolor || true
+fi
+
+#DEBHELPER#
+
+exit 0
