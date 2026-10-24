@@ -62,7 +62,7 @@ bool ParserMovasBahnDe::supportsTimeTableDirection()
     return true;
 }
 
-void ParserMovasBahnDe::getTimeTableForStation(const Station &currentStation, const Station &directionStation, const QDateTime &dateTime, int mode, int trainrestrictions)
+void ParserMovasBahnDe::getTimeTableForStation(const Station &currentStation, const Station &directionStation, const QDateTime &dateTime, ParserAbstract::Mode mode, int trainrestrictions)
 {
     if (currentRequestState != FahrplanNS::noneRequest) {
         return;
