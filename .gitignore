@@ -4,7 +4,13 @@
 /Makefile
 /bld.inf
 /click_build/
-/debian/
+/debian/fahrplan2/
+/debian/.debhelper/
+/debian/debhelper-build-stamp
+/debian/files
+/debian/*.substvars
+/debian/*.debhelper.log
+/debian/*.debhelper
 /fahrplan2*
 /moc/
 /obj/
@@ -17,3 +23,7 @@
 /tools/Makefile
 /tools/tmp-probe/
 /tools/transitous-probe
+/tools/leste-probe/leste-probe
+/tools/leste-probe/Makefile
+/tools/leste-probe/tmp/
+/.qmake.stash

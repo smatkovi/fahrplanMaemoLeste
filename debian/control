@@ -1,0 +1,92 @@
+Source: fahrplan2
+Section: user/navigation
+Priority: optional
+Maintainer: smatkovi <smatkovi@users.noreply.github.com>
+Build-Depends: debhelper-compat (= 12),
+    qtbase5-dev,
+    qtbase5-dev-tools,
+    qttools5-dev-tools,
+    libqt5maemo5-dev,
+    libqt5x11extras5-dev,
+    liblocation-dev,
+    libglib2.0-dev,
+    zlib1g-dev,
+    pkg-config
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://github.com/smatkovi/fahrplanMaemoLeste
+Vcs-Git: https://github.com/smatkovi/fahrplanMaemoLeste.git
+Vcs-Browser: https://github.com/smatkovi/fahrplanMaemoLeste
+
+Package: fahrplan2
+Architecture: any
+Depends: ${shlibs:Depends},
+    ${misc:Depends},
+    qt-platform-maemo,
+    qt5-style-plugins,
+    libqt5network5,
+    ca-certificates
+Description: Public transport journey planner and timetable
+ Fahrplan plans journeys and shows departure boards for public transport
+ in many countries of Europe, in Australia and worldwide (Transitous).
+ .
+ Backends: Deutsche Bahn, OBB (Austria), Salzburg, Munich (MVV), VRR (Rhine
+ Ruhr), search.ch (Switzerland), Rejseplanen (Denmark), reiseinfo.no (Norway),
+ Vasttrafik and ResRobot (Sweden), matka.fi (Finland), 9292 (the Netherlands),
+ Transport for Ireland, Sydney, Victoria and Transitous (worldwide, built
+ from open GTFS feeds).
+ .
+ This is the Maemo Leste port of Fahrplan 2, with the stacked windows,
+ picker buttons and application menu of the Fahrplan that Maemo 5 had.
+XSBC-Maemo-Display-Name: Fahrplan
+XB-Maemo-Icon-26:
+ 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
+ ixQAAAAASUVORK5CYII=
