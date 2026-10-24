@@ -31,6 +31,9 @@
 #include <QDir>
 #include <QUrl>
 #include <QFile>
+#if defined(BUILD_FOR_QT5)
+#include <QStandardPaths>
+#endif
 
 // qmake passes the version of the build; this is only the fallback for a
 // build that does not, and it used to shadow the real one.
@@ -140,7 +143,11 @@ void CalendarSfosWrapper::addToCalendar()
 */
 
     QTemporaryFile *tmpFile = new QTemporaryFile(
+#if defined(BUILD_FOR_QT5)
+        QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) +
+#else
         QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation) +
+#endif
                 QDir::separator() + "fahrplan-event-XXXXXX.ics",
                 this);
 
